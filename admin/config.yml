@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "configuracoes"
+    label: "Configurações do Site"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - file: "dados.json"
+        label: "Dados Gerais"
+        name: "dados"
+        fields:
+          - { label: "Texto da Promoção", name: "promocao", widget: "string", required: false }
+          - { label: "Datas Indisponíveis", name: "datas_bloqueadas", widget: "list", summary: "{{fields.data}}", field: { label: "Data (AAAA-MM-DD)", name: "data", widget: "string" } }
