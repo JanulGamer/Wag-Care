@@ -2,7 +2,6 @@ backend:
   name: git-gateway
   branch: main
 
-# Adicione esta linha com o link correto do seu site:
 site_url: https://wag3care.netlify.app
 
 media_folder: "images"
@@ -19,5 +18,15 @@ collections:
         label: "Dados Gerais"
         name: "dados"
         fields:
-          - { label: "Texto da Promoção", name: "promocao", widget: "string", required: false }
-          - { label: "Datas Indisponíveis", name: "datas_bloqueadas", widget: "list", summary: "{{fields.data}}", field: { label: "Data (AAAA-MM-DD)", name: "data", widget: "string" } }
+          - label: "Texto da Promoção"
+            name: "promocao"
+            widget: "string"
+            required: false
+          - label: "Datas Indisponíveis"
+            name: "datas_bloqueadas"
+            widget: "list"
+            required: false
+            field: 
+              label: "Data (AAAA-MM-DD)"
+              name: "data"
+              widget: "string"
