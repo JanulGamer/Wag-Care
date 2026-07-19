@@ -1,14 +1,1045 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Painel de Controle - Wag & Care</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<html lang="en-CA"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wag & Care - Pet Care and Walking</title>
+    <link rel="icon" type="image/png" href="image.png">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            line-height: 1.6;
+            color: #a2cfe9;
+        }
+
+        header {
+            background: linear-gradient(135deg, #a2cfe9 0%, #027dc3 100%);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-text {
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            font-family: 'Bangers', sans-serif;
+        }
+
+        .logo-img {
+            height: 50px !important;
+            width: auto !important;
+            display: block;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        nav p {
+            color: white;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .hero {
+            background: url('bg.png') no-repeat center/cover;
+            color: #000670;
+            padding: 150px 20px 100px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-family: 'Bangers', sans-serif;
+            font-size: 90px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            font-family: 'Fredoka', sans-serif;
+            display: inline-block;
+            padding: 12px 30px;
+            background: #2E8BEA;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background: #2679cb;
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+        }
+
+        .btn-whatsapp:hover {
+            background: #20ba5a;
+        }
+
+        .btn-channel {
+            background: #128c7e;
+        }
+
+        .btn-channel:hover {
+            background: #0f6f68;
+        }
+
+        .container h1 {
+            color: #1800ad;
+        }
+
+        .container h3 {
+            color: #000767;
+        }
+
+        .container h4{
+            color: hsl(198, 100%, 67%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 20px;
+        }
+
+        .section h2 {
+            font-family: 'Bangers', sans-serif;
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 50px;
+            color: #1800ad;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .service-card {
+            background: #a2cfe9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: #000767;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .service-card p {
+            color: #f6f6f6;
+            margin-bottom: 20px;
+        }
+
+        .services {
+        text-align: center;
+        }
+                
+
+        .services a {
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            padding: 12px 30px;
+            font-weight: bold;
+            text-align: center;
+            background: #2E8BEA;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        .services a:hover {
+            background: #2679cb;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 300px;
+            width: 80%;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        .carousel-item {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-item.active {
+            display: block;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 20px;
+            padding: 12px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+            transition: background 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev {
+            left: 15px;
+        }
+        .next {
+            right: 15px;
+        }
+
+        .schedule-form {
+            background: #e6f3ff;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #375560;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #37556054;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(234, 179, 102, 0.1);
+        }
+
+        .about-text a:hover {
+            background: #1e6fc2;
+        }
+
+        .about-section {
+            background: #a2cfe956;
+            padding: 80px 20px;
+        }
+
+        .about-content {
+            background: #e6f3ff3d;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .about-text h3 {
+            color: #000767;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: #375560;
+            line-height: 1.8;
+        }
+
+        .about-text a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #2E8BEA;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        footer {
+            background: linear-gradient(to right, #333, #000670, #333);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-info a {
+            color: #66bfff;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Dias totalmente indisponíveis no calendário */
+.indsponivel {
+    background-color: #e0e0e0 !important;
+    color: #a0a0a0 !important;
+    text-decoration: line-through; /* Roda um risco em cima do número */
+    cursor: not-allowed; /* Mostra o ícone de 'bloqueado' no mouse */
+    opacity: 0.6;
+}
+
+/* Botões de horários específicos indisponíveis */
+.horario-indisponivel {
+    background-color: #f3f3f3 !important;
+    color: #ccc !important;
+    border: 1px dashed #ccc !important;
+    cursor: not-allowed;
+}
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .ul p {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 70px;
+                margin-top: 45px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section h2 {
+                font-size: 35px;
+                margin-bottom: auto;
+            }
+        }
+    </style>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <div id="nc-root"></div>
+    <header>
+        <nav class="container">
+            <div class="logo-container">
+                <img src="logo2.png" alt="Wag & Care Logo" class="logo-img">
+                <span class="logo-text">Wag & Care</span>
+            </div>
+            <ul>
+                <li><a href="#services" data-i18n="nav_services"><strong>Services</strong></a></li>
+                <li><a href="#gallery" data-i18n="nav_gallery"><strong>Photos</strong></a></li>
+                <li><a href="#schedule" data-i18n="nav_schedule"><strong>Schedule</strong></a></li>
+                <li><a href="#about" data-i18n="nav_about"><strong>About</strong></a></li>
+                <p>|</p>
+                <li>
 
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</body>
-</html>
+                    <button onclick="changeLanguage('en')" style="background:none; border:none; color:white; cursor:pointer; font-weight:bold; font-family:inherit;">EN</button>
+
+                    |
+
+                    <button onclick="changeLanguage('pt')" style="background:none; border:none; color:white; cursor:pointer; font-weight:bold; font-family:inherit;">PT</button>
+
+                    |
+
+                    <button onclick="changeLanguage('fr')" style="background:none; border:none; color:white; cursor:pointer; font-weight:bold; font-family:inherit;">FR</button>
+
+                    |
+
+                    <button onclick="changeLanguage('es')" style="background:none; border:none; color:white; cursor:pointer; font-weight:bold; font-family:inherit;">ES</button>
+
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 data-i18n="hero_title"><strong>WELCOME TO WAG & CARE</strong></h1>
+            <h2 data-i18n="hero_subtitle"><strong>The care of your furry (or feathered) friend.</strong></h2>
+            <a href="#schedule" class="btn" data-i18n="btn_schedule"><strong>Schedule now</strong></a>
+            <a href="https://wa.me/15068896751" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer"><strong>💬 WhatsApp</strong></a>
+            <a href="https://www.google.com/url?q=https%3A%2F%2Fwhatsapp.com%2Fchannel%2F0029VbDVbI8Au3aJ4jc3sJ1U&sa=D&sntz=1&usg=AOvVaw3uIdcjoFL16avUwI_XF9UR" class="btn btn-channel" target="_blank" data-i18n="btn_channel"><strong>WhatsApp Channel</strong></a>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <div class="container"><link href="https://wag3care.netlify.app/">
+            <h2 data-i18n="services_title"><strong>OUR SERVICES</strong></h2>
+            <div class="services">
+                <div class="service-card">
+                    <h3 data-i18n="service_walk">WALK</h3>
+                    <p data-i18n="service_walk_desc"><strong>Safe and fun daily walks to keep your pet healthy and happy.</strong></p>
+                    <img src="walk.png" alt="Walk" style="width: 250px; border-radius: 25px; margin-top: 20px;">
+                </div>
+                <div class="service-card">
+                    <h3 data-i18n="service_sitting">PET SITTING</h3>
+                    <p data-i18n="service_sitting_desc"><strong>Home care while you are away.</strong></p>
+                    <img src="care.png" alt="Pet Sitting" style="width: 250px; border-radius: 25px; margin-top: 20px;">
+                </div>
+                <div class="service-card">
+                    <h3 data-i18n="service_food">FOOD</h3>
+                    <p data-i18n="service_food_desc"><strong>Feeding and quick surveillance.</strong></p>
+                    <img src="food.png" alt="Food" style="width: 250px; border-radius: 25px; margin-top: 20px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="gallery">
+        <div class="container">
+            <h2 data-i18n="works_title"><strong>Photos</strong></h2>
+
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-item active">
+                        <img src="Foto.jpeg" alt="Foto">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Foto1.jpg" alt="Foto1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Foto2.jpeg" alt="Foto2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Foto3.jpg" alt="Foto3">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Foto4.jpeg" alt="Foto4">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Foto5.jpeg" alt="Foto5">
+                    </div>
+                     <div class="carousel-item">
+                        <img src="Foto6.jpeg" alt="Foto6">
+                    </div>
+                     <div class="carousel-item">
+                        <img src="Foto7.jpeg" alt="Foto7">
+                    </div>
+                     <div class="carousel-item">
+                        <img src="Foto8.jpeg" alt="Foto8">
+                    </div>
+                </div>
+
+
+                <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+                <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="schedule">
+        <div class="container">
+            <h2 data-i18n="schedule_title"><strong>SCHEDULE YOUR SERVICE</strong></h2>
+            <form class="schedule-form">
+                <div class="form-group">
+                    <label for="name" data-i18n="label_name">Tutor's Name *</label>
+                    <input type="text" id="name" name="name" required="">
+                </div>
+                <div class="form-group">
+                    <label for="email" data-i18n="label_email">E-mail *</label>
+                    <input type="email" id="email" name="email" required="">
+                </div>
+                <div class="form-group">
+                    <label for="phone" data-i18n="label_phone">Phone *</label>
+                    <input type="tel" id="phone" name="phone" required="">
+                </div>
+                <div class="form-group">
+                    <label for="pet" data-i18n="label_pet">Pet's Name *</label>
+                    <input type="text" id="pet" name="pet" required="">
+                </div>
+                <div class="form-group">
+                    <label for="service" data-i18n="label_service">Desired Service *</label>
+                    <select id="service" name="service" required="">
+                        <option value="" id="option_select_service" data-i18n="option_select_service">Select a service</option>
+                        <option value="walk" id="option_walk" data-i18n="option_walk">Walk</option>
+                        <option value="petsitting" id="option_sitting" data-i18n="option_sitting">Pet Sitting</option>
+                        <option value="food" id="option_food" data-i18n="option_food">Food</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date" data-i18n="label_date">Desired Date *</label>
+                    <input type="text" id="date" name="date" required="">
+                </div>
+                <div class="form-group">
+                    <label for="hour" data-i18n="label_hour">Hour *</label>
+                    <input type="time" id="hour" name="hour" required="">
+                </div>
+                <div class="form-group">
+                    <label for="message" data-i18n="label_message">Additional Message</label>
+                    <textarea id="message" name="message" placeholder="Information about your pet, allergies, behavior, etc."></textarea>
+                </div>
+                <div class="form-group" style="display: flex; align-items: flex-start; gap: 10px;">
+                    <input type="checkbox" id="photo-auth" name="photo-auth" style="width: auto; margin-top: 5px; cursor: pointer;">
+                    <label for="photo-auth" id="label_terms" data-i18n="label_terms" style="font-weight: normal; cursor: pointer;">I authorize Wag & Care to publish photos of my pet on social media.</label>
+                </div>
+
+                <button type="button" class="btn" onclick="sendForm('whatsapp')" data-i18n="btn_whatsapp"><strong>Send via WhatsApp</strong></button>
+                <button type="button" class="btn" onclick="sendForm('sms')" data-i18n="btn_sms"><strong>Send via SMS</strong></button>
+            </form>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 data-i18n="about_title">ABOUT WAG & CARE</h2>
+                <h3 data-i18n="about_subtitle">Care with Love and Professionalism</h3>
+                <p data-i18n="about_p1">Wag & Care was created so that pets are treated with love, respect, and attention. Our mission is to leave owners at ease and well-informed.</p>
+                <p data-i18n="about_p2">We offer personalized services, respecting the unique needs and characteristics of each pet.</p>
+                <p data-i18n="about_p3">Our company is known for its dedicated, experienced, and reliable employees.</p>
+                <p data-i18n="about_p4">We will always be happy to help you!</p>
+                <a href="https://g.page/r/CQQ7gw7Wo-SNEBM/review" target="_blank" rel="noopener noreferrer" data-i18n="about_review"><strong>⭐ REVIEW US</strong></a>
+            </div>
+            <div>
+                <img src="logo2.png" alt="Sobre" style="border-radius: 10px; width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h4 data-i18n="footer_title">Wag & Care - Pet Care and Walking</h4>
+            <p data-i18n="footer_copyright">© 2026 Wag & Care. All rights reserved.</p>
+            <div class="contact-info">
+                <a href="tel:+15068896751">📞 +1 (506) 889-5542</a>
+                <a href="https://wa.me/15068896751" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+                <a href="mailto:wag3care@gmail.com">📧 wag3care@gmail.com</a>
+                <a href="https://maps.app.goo.gl/bkW3ugfczkHaXjhc7" target="_blank" rel="noopener noreferrer">📍 Moncton - NB</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLang = 'en';
+
+        const translations = {
+            'en': {
+                'hero_title': 'WELCOME TO WAG & CARE',
+                'hero_subtitle': 'The care of your furry (or feathered) friend.',
+                'nav_services': 'Services',
+                'nav_gallery': 'Photos',
+                'nav_schedule': 'Schedule',
+                'nav_about': 'About',
+                'btn_schedule': 'Schedule now',
+                'btn_channel': 'WhatsApp Channel',
+
+                'services_title': 'OUR SERVICES',
+
+                'service_walk': 'WALK',
+                'service_walk_desc': 'Safe and fun daily walks to keep your pet healthy and happy.',
+
+                'service_sitting': 'PET SITTING',
+                'service_sitting_desc': 'Home care while you are away.',
+
+                'service_food': 'FOOD',
+                'service_food_desc': 'Feeding and quick surveillance.',
+
+                'works_title': 'PHOTOS',
+
+                'schedule_title': 'SCHEDULE YOUR SERVICE',
+                'label_name': "Tutor's Name *",
+                'label_email': 'E-mail *',
+                'label_phone': 'Phone *',
+                'label_pet': "Pet's Name *",
+                'label_service': 'Desired Service *',
+                'option_select_service': 'Select a service',
+                'option_walk': 'Walk',
+                'option_sitting': 'Pet Sitting',
+                'option_food': 'Food',
+                'label_date': 'Desired Date *',
+                'label_hour': 'Hour *',
+                'label_message': 'Additional Message',
+                'message_placeholder': 'Information about your pet, allergies, behavior, etc.',
+                'label_terms': 'I authorize Wag & Care to publish photos of my pet on social media.',
+                'btn_whatsapp': 'Send via WhatsApp',
+                'btn_sms': 'Send via SMS',
+
+                'about_title': 'ABOUT WAG & CARE',
+                'about_subtitle': 'Care with Love and Professionalism',
+                'about_p1': 'Wag & Care was created so that pets are treated with love, respect, and attention. Our mission is to leave owners at ease and well-informed.',
+                'about_p2': 'We offer personalized services, respecting the unique needs and characteristics of each pet.',
+                'about_p3': 'Our company is known for its dedicated, experienced, and reliable employees.',
+                'about_p4': 'We will always be happy to help you!',
+                'about_review': '⭐ REVIEW US',
+
+                'footer_title': 'Wag & Care - Pet Care and Walking',
+                'footer_copyright': '© 2026 Wag & Care. All rights reserved.',
+
+                'alert_error': 'Please fill in all required fields.',
+
+                'wp_msg_hi': 'Hi! I would like to schedule a service at Wag & Care.',
+                'wp_tutor': 'Tutor',
+                'wp_phone': 'Phone',
+                'wp_pet': 'Pet',
+                'wp_service': 'Service',
+                'wp_date': 'Date',
+                'wp_hour': 'Hour',
+                'wp_auth': 'Photo Authorization',
+                'wp_auth_yes': 'Yes, authorized',
+                'wp_auth_no': 'No, not authorized',
+                'wp_obs': 'Observations'
+            },
+            'pt': {
+                'hero_title': 'BEM-VINDO(A) À WAG & CARE',
+                'hero_subtitle': 'O cuidado do seu amigo peludo (ou emplumado).',
+                'nav_services': 'Serviços',
+                'nav_gallery': 'Fotos',
+                'nav_schedule': 'Agendar',
+                'nav_about': 'Sobre',
+                'btn_schedule': 'Agende agora',
+                'btn_channel': 'Canal do WhatsApp',
+
+                'services_title': 'NOSSOS SERVIÇOS',
+
+                'service_walk': 'CAMINHADA',
+                'service_walk_desc': 'Caminhadas diárias seguras e divertidas para manter seu pet saudável e feliz.',
+
+                'service_sitting': 'CUIDADO COM PETS',
+                'service_sitting_desc': 'Cuidado em casa enquanto você estiver fora.',
+                
+                'service_food': 'COMIDA',
+                'service_food_desc': 'Alimentação e vigilância rápida.',
+                
+                'works_title': 'FOTOS',
+
+                'schedule_title': 'AGENDE SEU SERVIÇO',
+                'label_name': "Nome do Tutor *",
+                'label_email': 'Email *',
+                'label_phone': 'Telefone *',
+                'label_pet': "Nome do Pet *",
+                'label_service': 'Serviço Desejado *',
+                'option_select_service': 'Selecione um serviço',
+                'option_walk': 'Caminhada',
+                'option_sitting': 'Cuidado com Pets',
+                'option_food': 'Comida',
+                'label_date': 'Data Desejada *',
+                'label_hour': 'Hora *',
+                'label_message': 'Mensagem Adicional',
+                'message_placeholder': 'Informações sobre seu pet, alergias, comportamento, etc.',
+                'label_terms': 'Eu autorizo a Wag & Care a publicar fotos do meu pet nas redes sociais.',
+                'btn_whatsapp': 'Enviar via WhatsApp',
+                'btn_sms': 'Enviar via SMS',
+
+                'about_title': 'SOBRE A WAG & CARE',
+                'about_subtitle': 'Cuidado com Amor e Profissionalismo',
+                'about_p1': 'A Wag & Care foi criada para que os pets sejam tratados com amor, respeito e atenção. Nossa missão é deixar os donos tranquilos e bem informados.',
+                'about_p2': 'Oferecemos serviços personalizados, respeitando as necessidades e características únicas de cada pet.',
+                'about_p3': 'Nossa empresa é conhecida por seus funcionários dedicados, experientes e confiáveis.',
+                'about_p4': 'Estaremos sempre felizes em ajudar você!',
+                'about_review': '⭐ NOS AVALIE',
+
+                'footer_title': 'Wag & Care - Cuidado e Caminhada para pets',
+                'footer_copyright': '© 2026 Wag & Care. Todos os direitos reservados.',
+                
+                'alert_error': 'Por favor, preencha todos os campos obrigatórios.',
+                
+                'wp_msg_hi': 'Olá! Gostaria de agendar um serviço na Wag & Care.',
+                'wp_tutor': 'Tutor(a)',
+                'wp_phone': 'Telefone',
+                'wp_pet': 'Pet',
+                'wp_service': 'Serviço',
+                'wp_date': 'Data',
+                'wp_hour': 'Hora',
+                'wp_auth': 'Autorização de Foto',
+                'wp_auth_yes': 'Sim, autorizado',
+                'wp_auth_no': 'Não, não autorizado',
+                'wp_obs': 'Observações'
+            },
+            'fr': {
+                'hero_title': 'BIEN VENU(E) À WAG & CARE',
+                'hero_subtitle': 'Le soin de votre ami à fourrure (ou à plumes).',
+                'nav_services': 'Services',
+                'nav_gallery': 'Photos',
+                'nav_schedule': 'Planifier',
+                'nav_about': 'À propos',
+                'btn_schedule': 'Planifiez maintenant',
+                'btn_channel': 'Chaîne WhatsApp',
+
+                'services_title': 'NOS SERVICES',
+
+                'service_walk': 'PROMENADE',
+                'service_walk_desc': 'Promenades quotidiennes sûres et amusantes pour garder votre animal en bonne santé et heureux.',
+
+                'service_sitting': 'GARDIENNAGE D\'ANIMAUX',
+                'service_sitting_desc': 'Soins à domicile pendant votre absence.',
+                
+                'service_food': 'NOURRITURE',
+                'service_food_desc': 'Alimentation et surveillance rapide.',
+                
+                'works_title': 'PHOTOS',
+
+                'schedule_title': 'PLANIFIEZ VOTRE SERVICE',
+                'label_name': "Nom du tuteur/tutrice) *",
+                'label_email': 'Email *',
+                'label_phone': 'Téléphone *',
+                'label_pet': "Nom du Pet *",
+                'label_service': 'Service Désiré *',
+                'option_select_service': 'Sélectionnez un service',
+                'option_walk': 'Promenade',
+                'option_sitting': 'Gardiennage d\'animaux',
+                'option_food': 'Nourriture',
+                'label_date': 'Date Désirée *',
+                'label_hour': 'Heure *',
+                'label_message': 'Message Additionnel',
+                'message_placeholder': 'Informations sur votre animal, allergies, comportement, etc.',
+                'label_terms': 'J\'autorise Wag & Care à publier des photos de mon animal sur les réseaux sociaux.',
+                'btn_whatsapp': 'Envoyer via WhatsApp',
+                'btn_sms': 'Envoyer via SMS',
+
+                'about_title': 'À PROPOS DE WAG & CARE',
+                'about_subtitle': 'Soin avec Amour et Professionnalisme',
+                'about_p1': 'Wag & Care a été créé pour que les animaux soient traités avec amour, respect et attention. Notre mission est de laisser les propriétaires tranquilles et bien informés.',
+                'about_p2': 'Nous offrons des services personnalisés, respectant les besoins et les caractéristiques uniques de chaque animal.',
+                'about_p3': 'Notre entreprise est connue pour ses employés dédiés, expérimentés et fiables.',
+                'about_p4': 'Nous serons toujours heureux de vous aider!',
+                'about_review': '⭐ ÉVALUEZ-NOUS',
+
+                'footer_title': 'Wag & Care - Soin et Promenade pour animaux',
+                'footer_copyright': '© 2026 Wag & Care. Tous droits réservés.',
+                
+                'alert_error': 'Veuillez remplir tous les champs obligatoires.',
+                
+                'wp_msg_hi': 'Bonjour! Je voudrais planifier un service chez Wag & Care.',
+                'wp_tutor': 'Tuteur/Tutrice',
+                'wp_phone': 'éléphone',
+                'wp_pet': 'Animal',
+                'wp_service': 'Service',
+                'wp_date': 'Date',
+                'wp_hour': 'Heure',
+                'wp_auth': 'Autorisation de Photo',
+                'wp_auth_yes': 'Oui, autorisé',
+                'wp_auth_no': 'Non, non autorisé',
+                'wp_obs': 'Observations'
+            },
+            'es': {
+                'hero_title': 'BIEN VENIDO A WAG & CARE',
+                'hero_subtitle': 'El cuidado de tu amigo peludo (o emplumado).',
+                'nav_services': 'Servicios',
+                'nav_gallery': 'Fotos',
+                'nav_schedule': 'Agendar',
+                'nav_about': 'Acerca de',
+                'btn_schedule': 'Agenda ahora',
+                'btn_channel': 'Canal de WhatsApp',
+
+                'services_title': 'NUESTROS SERVICIOS',
+
+                'service_walk': 'CAMINATA',
+                'service_walk_desc': 'Caminatas diarias seguras y divertidas para mantener a tu mascota saludable y feliz.',
+
+                'service_sitting': 'CUIDADO CON MASCOTAS',
+                'service_sitting_desc': 'Cuidado en casa mientras estás fuera.',
+                
+                'service_food': 'COMIDA',
+                'service_food_desc': 'Alimentación y vigilancia rápida.',
+                
+                'works_title': 'FOTOS',
+
+                'schedule_title': 'AGENDA TU SERVICIO',
+                'label_name': "Nombre del tutor(a) *",
+                'label_email': 'Email *',
+                'label_phone': 'Teléfono *',
+                'label_pet': "Nombre del Pet *",
+                'label_service': 'Servicio Deseado *',
+                'option_select_service': 'Seleccione un servicio',
+                'option_walk': 'Caminata',
+                'option_sitting': 'Cuidado con Mascotas',
+                'option_food': 'Comida',
+                'label_date': 'Fecha Deseada *',
+                'label_hour': 'Hora *',
+                'label_message': 'Mensaje Adicional',
+                'message_placeholder': 'Informaciones sobre tu pet, alergias, comportamiento, etc.',
+                'label_terms': 'Autorizo a Wag & Care a publicar fotos de mi mascota en las redes sociales.',
+                'btn_whatsapp': 'Enviar via WhatsApp',
+                'btn_sms': 'Enviar via SMS',
+
+                'about_title': 'ACERCA DE WAG & CARE',
+                'about_subtitle': 'Cuidado con Amor y Profesionalismo',
+                'about_p1': 'Wag & Care fue creada para que las mascotas sean tratadas con amor, respeto y atención. Nuestra misión es dejar a los dueños tranquilos y bien informados.',
+                'about_p2': 'Ofrecemos servicios personalizados, respetando las necesidades y características únicas de cada mascota.',
+                'about_p3': 'Nuestra empresa es conocida por sus empleados dedicados, experimentados y confiables.',
+                'about_p4': '¡Siempre estaremos felices de ayudarte!',
+                'about_review': '⭐ REVÍSENOS',
+
+                'footer_title': 'Wag & Care - Cuidado y Caminata para mascotas',
+                'footer_copyright': '© 2026 Wag & Care. Todos los derechos reservados.',
+                
+                'alert_error': 'Por favor, complete todos los campos obligatorios.',
+                
+                'wp_msg_hi': '¡Hola! Me gustaría agendar un servicio en Wag & Care.',
+                'wp_tutor': 'Tutor(a)',
+                'wp_phone': 'Teléfono',
+                'wp_pet': 'Mascota',
+                'wp_service': 'Servicio',
+                'wp_date': 'Fecha',
+                'wp_hour': 'Hora',
+                'wp_auth': 'Autorización de Foto',
+                'wp_auth_yes': 'Sí, autorizado',
+                'wp_auth_no': 'No, no autorizado',
+                'wp_obs': 'Observaciones'
+            }
+        };
+
+        // Substitua a definição das suas datas fixas por esta função:
+async function iniciarSiteComDados() {
+    try {
+        // Busca o arquivo JSON que o painel administrativo gerou
+        const resposta = await fetch('/dados.json');
+        const dados = await resposta.json();
+
+        // 1. Aplica as datas bloqueadas no Flatpickr
+        const datasIndisponiveis = dados.datas_bloqueadas || [];
+        flatpickr("#date", {
+            dateFormat: "Y-m-d",
+            disable: datasIndisponiveis,
+            minDate: "today"
+        });
+
+        // 2. Aplica o texto da promoção na tela (se existir)
+        if (dados.promocao) {
+            const banner = document.getElementById('banner-promocao');
+            if (banner) banner.innerText = dados.promocao;
+        }
+
+    } catch (erro) {
+        console.error("Ainda não existem dados salvos ou ocorreu um erro:", erro);
+        // Fallback: se o arquivo não existir, inicia o calendário sem bloqueios
+        flatpickr("#date", { dateFormat: "Y-m-d", minDate: "today" });
+    }
+}
+
+// Executa a função ao carregar a página
+iniciarSiteComDados();
+
+        function sendForm(plataforma) {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const pet = document.getElementById('pet').value;
+            const service = document.getElementById('service').value;
+            const date = document.getElementById('date').value;
+            const hour = document.getElementById('hour').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !phone || !pet || !service || !date || !hour) {
+                alert(translations[currentLang]['alert_error']);
+                return;
+            }
+
+            const photoAuth = document.getElementById('photo-auth').checked;
+            const authStatus = photoAuth ? translations[currentLang]['wp_auth_yes'] : translations[currentLang]['wp_auth_no'];
+
+            const textMessage = `${translations[currentLang]['wp_msg_hi']}\n\n` +
+                `${translations[currentLang]['wp_tutor']}: ${name}\n` +
+                `${translations[currentLang]['wp_phone']}: ${phone}\n` +
+                `${translations[currentLang]['wp_pet']}: ${pet}\n` +
+                `${translations[currentLang]['wp_service']}: ${service}\n` +
+                `${translations[currentLang]['wp_date']}: ${date}\n` +
+                `${translations[currentLang]['wp_hour']}: ${hour}\n` +
+                `${translations[currentLang]['wp_auth']}: ${authStatus}\n` +
+                `${message ? `${translations[currentLang]['wp_obs']}: ${message}` : ''}`;
+                
+            const encodedMessage = encodeURIComponent(textMessage);
+            const numeroEmpresa = "15068896751";
+
+            if (plataforma === 'whatsapp') {
+                window.open(`https://wa.me/${numeroEmpresa}?text=${encodedMessage}`, '_blank');
+            } else if (plataforma === 'sms') {
+                window.location.href = `sms:${numeroEmpresa}?body=${encodedMessage}`;
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        let slideIndex = 0;
+
+        function showSlides(index) {
+            const slides = document.querySelectorAll('.carousel-item');
+            const dots = document.querySelectorAll('.dot');
+
+            if (slides.length === 0) return;
+
+            if (index >= slides.length) { slideIndex = 0; }
+            if (index < 0) { slideIndex = slides.length - 1; }
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove('active');
+            }
+
+            slides[slideIndex].classList.add('active');
+            if (dots[slideIndex]) {
+                dots[slideIndex].classList.add('active');
+            }
+        }
+
+        function moveSlide(step) {
+            showSlides(slideIndex += step);
+        }
+
+        function currentSlide(index) {
+            showSlides(slideIndex = index);
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            const messageField = document.getElementById('message');
+            if (messageField && translations[lang]['message_placeholder']) {
+                messageField.setAttribute('placeholder', translations[lang]['message_placeholder']);
+            }
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.querySelector('strong')) {
+                        element.innerHTML = `<strong>${translations[lang][key]}</strong>`;
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+        }
+    </script>
+</body></html>
