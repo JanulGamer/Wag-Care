@@ -3,23 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Control Panel - Wag & Care</title>
-  <link rel="icon" type="image/png" href="image.png">
+  <title>Painel de Controle - Wag & Care</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-
-  <div id="nc-root"></div>
-
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-  <script>
-    // Esse bloco garante que o script só inicialize quando o HTML estiver totalmente pronto
-    window.addEventListener('DOMContentLoaded', () => {
-      if (window.CMS) {
-        window.CMS.init();
-      }
-    });
-  </script>
 </body>
 </html>
