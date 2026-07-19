@@ -1,12 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Painel de Controle - Wag & Care</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
-<body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</body>
-</html>
+backend:
+  name: git-gateway
+  branch: main
+
+site_url: https://wag3care.netlify.app
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "configuracoes"
+    label: "Configurações do Site"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - file: "dados.json"
+        label: "Dados Gerais"
+        name: "dados"
+        fields:
+          - label: "Texto da Promoção"
+            name: "promocao"
+            widget: "string"
+            required: false
+          - label: "Datas Indisponíveis"
+            name: "datas_bloqueadas"
+            widget: "list"
+            required: false
+            field: 
+              label: "Data (AAAA-MM-DD)"
+              name: "data"
+              widget: "string"
