@@ -599,7 +599,7 @@
                     <textarea id="message" name="message" placeholder="Information about your pet, allergies, behavior, etc."></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="birthda" data-i18n="label_bday">Birthday *</label>
+                    <label for="bday" data-i18n="label_bday">Pet Birthday</label>
                     <input type="date" id="bday" name="bday">
                 </div>
                 <div class="form-group" style="display: flex; align-items: flex-start; gap: 10px;">
@@ -684,6 +684,7 @@
                 'label_hour': 'Hour *',
                 'label_message': 'Additional Message',
                 'message_placeholder': 'Information about your pet, allergies, behavior, etc.',
+                'bday': 'Pet\' Birthday',
                 'label_terms': 'I authorize Wag & Care to publish photos of my pet on social media.',
                 'btn_whatsapp': 'Send via WhatsApp',
                 'btn_sms': 'Send via SMS',
@@ -750,6 +751,7 @@
                 'label_hour': 'Hora *',
                 'label_message': 'Mensagem Adicional',
                 'message_placeholder': 'Informações sobre seu pet, alergias, comportamento, etc.',
+                'bday': 'Aniversário do Pet',
                 'label_terms': 'Eu autorizo a Wag & Care a publicar fotos do meu pet nas redes sociais.',
                 'btn_whatsapp': 'Enviar via WhatsApp',
                 'btn_sms': 'Enviar via SMS',
@@ -816,6 +818,7 @@
                 'label_hour': 'Heure *',
                 'label_message': 'Message Additionnel',
                 'message_placeholder': 'Informations sur votre animal, allergies, comportement, etc.',
+                'bday': 'Anniversaire de l\'animal',
                 'label_terms': 'J\'autorise Wag & Care à publier des photos de mon animal sur les réseaux sociaux.',
                 'btn_whatsapp': 'Envoyer via WhatsApp',
                 'btn_sms': 'Envoyer via SMS',
@@ -882,6 +885,7 @@
                 'label_hour': 'Hora *',
                 'label_message': 'Mensaje Adicional',
                 'message_placeholder': 'Informaciones sobre tu pet, alergias, comportamiento, etc.',
+                'bday': 'Cumpleaños de la Mascota',                
                 'label_terms': 'Autorizo a Wag & Care a publicar fotos de mi mascota en las redes sociales.',
                 'btn_whatsapp': 'Enviar via WhatsApp',
                 'btn_sms': 'Enviar via SMS',
@@ -952,6 +956,7 @@ iniciarSiteComDados();
             const date = document.getElementById('date').value;
             const hour = document.getElementById('hour').value;
             const message = document.getElementById('message').value;
+            const bday = document.getElementById('bday').value;
             
             if (!name || !phone || !pet || !service || !date || !hour) {
                 alert(translations[currentLang]['alert_error']);
@@ -969,7 +974,8 @@ iniciarSiteComDados();
                 `${translations[currentLang]['wp_date']}: ${date}\n` +
                 `${translations[currentLang]['wp_hour']}: ${hour}\n` +
                 `${translations[currentLang]['wp_auth']}: ${authStatus}\n` +
-                `${message ? `${translations[currentLang]['wp_obs']}: ${message}` : ''}`;
+                `${message ? `${translations[currentLang]['wp_obs']}: ${message}` : ''}\n`
+                `${translations[currentLang]['wp_bday']}: ${bday};
                 
             const encodedMessage = encodeURIComponent(textMessage);
             const numeroEmpresa = "15068896751";
