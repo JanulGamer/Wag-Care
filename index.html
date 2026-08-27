@@ -912,41 +912,7 @@
         };
 
         // Substitua a definição das suas datas fixas por esta função:
-async function iniciarSiteComDados() {
-    try {
-        const resposta = await fetch('/dados.json');
-        const dados = await resposta.json();
-
-        // 1. Aplica as datas bloqueadas
-        const datasIndisponiveis = dados.datas_bloqueadas || [];
-        flatpickr("#date", {
-            dateFormat: "Y-m-d",
-            disable: datasIndisponiveis,
-            minDate: "today"
-        });
-
-        // 2. Aplica o texto da promoção
-        if (dados.promocao) {
-            const banner = document.getElementById('banner-promocao');
-            if (banner) banner.innerText = dados.promocao;
-        }
-
-        // 3. Renderiza as fotos e os pontos (dots) do carrossel
-        if (dados.fotos_carrossel && dados.fotos_carrossel.length > 0) {
-            // Busca o container das fotos (tenta .carousel-inner ou .carousel-container ou .carousel)
-            const carrosselContainer = document.querySelector('.carousel-inner') || document.querySelector('.carousel-container') || document.querySelector('.carousel');
-            const dotsContainer = document.querySelector('.dots-container') || document.querySelector('.carousel-dots');
-
-            if (carrosselContainer) {
-                // Remove apenas as fotos antigas mantendo os botões de avançar/voltar se existirem
-                const slidesAntigos = carrosselContainer.querySelectorAll('.carousel-item');
-                slidesAntigos.forEach(slide => slide.remove());
-
-                // Se houver container de bolinhas, limpa as antigas
-                if (dotsContainer) dotsContainer.innerHTML = '';
-
-    // Cria cada novo slide e sua respectiva bolinha
-    dados.fotos_carrossel.forEach((item, index) => {
+dados.fotos_carrossel.forEach((item, index) => {
     // Garante que o caminho da imagem sempre comece com '/' (ex: /images/foto.jpg)
     let caminhoImagem = item.imagem || '';
     if (caminhoImagem && !caminhoImagem.startsWith('/')) {
@@ -969,18 +935,7 @@ async function iniciarSiteComDados() {
         dotsContainer.appendChild(novaBolinha);
     }
 });
-
-                // Reinicia o carrossel no slide 0
-                slideIndex = 0;
-                showSlides(0);
-            }
-        }
-
-    } catch (erro) {
-        console.error("Erro ao carregar os dados:", erro);
-        flatpickr("#date", { dateFormat: "Y-m-d", minDate: "today" });
-    }
-}
+        
         
 // Executa a função ao carregar a página
 iniciarSiteComDados();
