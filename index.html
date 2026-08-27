@@ -945,25 +945,30 @@ async function iniciarSiteComDados() {
                 // Se houver container de bolinhas, limpa as antigas
                 if (dotsContainer) dotsContainer.innerHTML = '';
 
-                // Cria cada novo slide e sua respectiva bolinha
-                dados.fotos_carrossel.forEach((item, index) => {
-                    const caminhoImagem = item.imagem ? item.imagem.replace(/^\//, '') : '';
-                    const activeClass = index === 0 ? ' active' : '';
+    // Cria cada novo slide e sua respectiva bolinha
+    dados.fotos_carrossel.forEach((item, index) => {
+    // Garante que o caminho da imagem sempre comece com '/' (ex: /images/foto.jpg)
+    let caminhoImagem = item.imagem || '';
+    if (caminhoImagem && !caminhoImagem.startsWith('/')) {
+        caminhoImagem = '/' + caminhoImagem;
+    }
 
-                    // Cria o slide da imagem
-                    const novoSlide = document.createElement('div');
-                    novoSlide.className = `carousel-item${activeClass}`;
-                    novoSlide.innerHTML = `<img src="${caminhoImagem}" alt="Foto Wag & Care" style="width:100%; height:100%; object-fit:cover;">`;
-                    carrosselContainer.appendChild(novoSlide);
+    const activeClass = index === 0 ? ' active' : '';
 
-                    // Cria a bolinha de navegação se o container existir
-                    if (dotsContainer) {
-                        const novaBolinha = document.createElement('span');
-                        novaBolinha.className = `dot${activeClass}`;
-                        novaBolinha.setAttribute('onclick', `currentSlide(${index})`);
-                        dotsContainer.appendChild(novaBolinha);
-                    }
-                });
+    // Cria o slide da imagem
+    const novoSlide = document.createElement('div');
+    novoSlide.className = `carousel-item${activeClass}`;
+    novoSlide.innerHTML = `<img src="${caminhoImagem}" alt="Foto Wag & Care" style="width:100%; height:100%; object-fit:cover;">`;
+    carrosselContainer.appendChild(novoSlide);
+
+    // Cria a bolinha de navegação se o container existir
+    if (dotsContainer) {
+        const novaBolinha = document.createElement('span');
+        novaBolinha.className = `dot${activeClass}`;
+        novaBolinha.setAttribute('onclick', `currentSlide(${index})`);
+        dotsContainer.appendChild(novaBolinha);
+    }
+});
 
                 // Reinicia o carrossel no slide 0
                 slideIndex = 0;
