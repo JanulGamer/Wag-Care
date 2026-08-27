@@ -914,11 +914,10 @@
         // Substitua a definição das suas datas fixas por esta função:
 async function iniciarSiteComDados() {
     try {
-        // Busca o arquivo JSON que o painel administrativo gerou
         const resposta = await fetch('/dados.json');
         const dados = await resposta.json();
 
-        // 1. Aplica as datas bloqueadas no Flatpickr
+        // 1. Aplica as datas bloqueadas
         const datasIndisponiveis = dados.datas_bloqueadas || [];
         flatpickr("#date", {
             dateFormat: "Y-m-d",
@@ -926,15 +925,43 @@ async function iniciarSiteComDados() {
             minDate: "today"
         });
 
-        // 2. Aplica o texto da promoção na tela (se existir)
+        // 2. Aplica o texto da promoção
         if (dados.promocao) {
             const banner = document.getElementById('banner-promocao');
             if (banner) banner.innerText = dados.promocao;
         }
 
+        // 3. Renderiza as fotos do carrossel salvas pelo CMS
+        if (dados.fotos_carrossel && dados.fotos_carrossel.length > 0) {
+            const carrosselContainer = document.querySelector('.carousel'); // Seleciona o container principal do carrossel
+            
+            if (carrosselContainer) {
+                // Remove os slides antigos e os pontos de navegação
+                const slidesAntigos = carrosselContainer.querySelectorAll('.carousel-item');
+                slidesAntigos.forEach(slide => slide.remove());
+
+                // Cria os novos slides dinamicamente
+                dados.fotos_carrossel.forEach((item, index) => {
+                    const caminhoImagem = item.imagem ? item.imagem.replace(/^\//, '') : '';
+                    const activeClass = index === 0 ? 'active' : '';
+
+                    const nuevoSlide = document.createElement('div');
+                    nuevoSlide.className = `carousel-item ${activeClass}`;
+                    nuevoSlide.innerHTML = `<img src="${caminhoImagem}" alt="Foto Wag & Care" style="width:100%; height:100%; object-fit:cover;">`;
+                    
+                    carrosselContainer.appendChild(nuevoSlide);
+                });
+
+                // Reinicia o carrossel no primeiro slide
+                if (typeof showSlides === 'function') {
+                    slideIndex = 0;
+                    showSlides(0);
+                }
+            }
+        }
+
     } catch (erro) {
-        console.error("Ainda não existem dados salvos ou ocorreu um erro:", erro);
-        // Fallback: se o arquivo não existir, inicia o calendário sem bloqueios
+        console.error("Erro ao carregar os dados:", erro);
         flatpickr("#date", { dateFormat: "Y-m-d", minDate: "today" });
     }
 }
